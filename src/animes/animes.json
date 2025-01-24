@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Demon Slayer",
+    "img": "/demon-slayer/cover.webp"
+  },
+  {
+    "id": 2,
+    "name": "Attack on Titan",
+    "img": "/attack-on-titan/cover.webp"
+  }
+]

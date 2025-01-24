@@ -1,0 +1,14 @@
+---
+import challenges from "src/challenges/challenges.json";
+import ChallengeCard from "./ChallengeCard.astro";
+const { langData } = Astro.props;
+---
+
+<section class="flex flex-col gap-10 justify-center items-center">
+  <h2 class="underline">{langData.challenges.title}</h2>
+  {
+    challenges.map((challenge) => {
+      return <ChallengeCard challenge={challenge} />;
+    })
+  }
+</section>

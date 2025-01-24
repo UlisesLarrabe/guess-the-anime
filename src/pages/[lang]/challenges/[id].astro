@@ -1,0 +1,145 @@
+---
+import Layout from "@layouts/Layout.astro";
+import challenges from "src/challenges/challenges.json";
+
+export async function getStaticPaths() {
+  return challenges.map((challenge) => ({
+    params: { lang: "es", id: challenge.id },
+    props: { challenge },
+  }));
+}
+
+const { challenge } = Astro.props;
+---
+
+<Layout>
+  <section
+    class="p-4 flex flex-col gap-20 justify-center items-center w-[1024px]"
+  >
+    <div class="flex flex-col gap-2 items-center justify-center">
+      <h1 class="text-3xl text-[#f7f7f7]">
+        Reto número <span class="text-[#f2cc67]">#{challenge.id}</span>
+      </h1>
+      <div class="w-full items-center justify-center flex flex-col gap-4">
+        <search class="w-[300px]">
+          <label>
+            <input
+              type="text"
+              id="searchValue"
+              placeholder="Adivina..."
+              class="p-2 w-full rounded-sm"
+            />
+          </label>
+        </search>
+        <div class="relative w-[300px] h-4">
+          <div
+            id="search-results"
+            class="z-40 absolute top-0 left-0 right-0 overflow-scroll scrollbar-none bg-[#ebd07f] rounded-sm max-h-40"
+          >
+          </div>
+        </div>
+      </div>
+
+      <h3 class="text-2xl font-semibold text-[#9edf8f]" id="winner"></h3>
+      <p class="text-green-500 text-xl" id="name-winner"></p>
+
+      <ul id="list-of-errors" class="text-red-500"></ul>
+    </div>
+
+    <div class="grid grid-cols-2 gap-2 w-full h-[600px]">
+      {
+        challenge.images.map((image) => {
+          return (
+            <button class="bg-black rounded-sm" data-winner={challenge.winner}>
+              <img
+                src={image}
+                alt={image}
+                class="w-full h-[300px] object-cover opacity-0"
+              />
+            </button>
+          );
+        })
+      }
+    </div>
+  </section>
+</Layout>
+
+<script type="module">
+  import animes from "/src/animes/animes.json";
+
+  const $images = document.querySelectorAll("img");
+  const winner = document.querySelector("[data-winner]").dataset.winner;
+  const $search = document.querySelector("#searchValue");
+  const $results = document.querySelector("#search-results");
+  const $winner = document.querySelector("#winner");
+  const $nameWinner = document.querySelector("#name-winner");
+
+  let canShowNextImage = true;
+
+  $search?.addEventListener("input", (e) => {
+    const value = e.target.value;
+    if (value === "") {
+      $results.innerHTML = "";
+      return;
+    }
+    $results.innerHTML = "";
+    const filter = animes.filter((anime) => {
+      return anime.name.toLowerCase().includes(value.toLowerCase());
+    });
+
+    $results.innerHTML = filter
+      .map((anime) => {
+        return `<button class=" w-[300px] flex gap-2  items-center bg-[#ebd07f] rounded-sm p-2 hover:opacity-80 max-w-[300px]">
+          <img class="h-20 cover-contain" src="${anime.img}" alt="${anime.name}" class="w-full h-32 object-cover opacity-0" />
+          <h2>${anime.name}</h2>
+
+          </button>`;
+      })
+      .join(" ");
+
+    const $buttons = document.querySelectorAll("button");
+    $buttons.forEach(($button) => {
+      $button.addEventListener("click", () => {
+        const value = $button.querySelector("h2").textContent;
+        $search.value = value;
+        if (value.toLowerCase() === winner.toLowerCase()) {
+          $winner.textContent = `Respuesta correcta. Ganaste!`;
+          $nameWinner.textContent = `✅ ${winner}`;
+          $images.forEach(($image) => {
+            $image.classList.toggle("opacity-0");
+          });
+        } else {
+          const $error = document.createElement("li");
+          $error.textContent = `❌ ${value}`;
+          document.querySelector("#list-of-errors").appendChild($error);
+          $search.value = "";
+        }
+        $results.innerHTML = "";
+        canShowNextImage = true;
+      });
+    });
+  });
+
+  let currentImage = 0;
+
+  $images.forEach(($image, index) => {
+    $image.addEventListener("click", () => {
+      if (currentImage === index && canShowNextImage) {
+        $image.classList.toggle("opacity-100");
+        $image.classList.toggle("opacity-0");
+        currentImage++;
+        canShowNextImage = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+</style>

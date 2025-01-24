@@ -1,0 +1,33 @@
+---
+const { lang } = Astro.params;
+
+import "@fontsource-variable/onest";
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Adivina el anime!</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #372b2e;
+    font-family: "Onest Variable", sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+</style>

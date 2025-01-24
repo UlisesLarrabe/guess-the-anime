@@ -1,0 +1,13 @@
+---
+const { challenge } = Astro.props;
+---
+
+<a
+  href={`es/challenges/${challenge.id}`}
+  class="text-[#f2cc67] bg-slate-800 p-4 flex justify-center items-center w-44 h-60 group hover:border-yellow-300 hover:border-2 rounded-sm"
+>
+  <span
+    class="group-hover:scale-105 group-hover:font-bold transition-transform duration-100"
+    >#{challenge.id}</span
+  >
+</a>
