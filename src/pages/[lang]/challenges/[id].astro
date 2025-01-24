@@ -76,8 +76,9 @@ const { challenge } = Astro.props;
   const $results = document.querySelector("#search-results");
   const $winner = document.querySelector("#winner");
   const $nameWinner = document.querySelector("#name-winner");
+  let currentImage = 1;
 
-  let canShowNextImage = true;
+  $images[0].classList.toggle("opacity-0");
 
   $search?.addEventListener("input", (e) => {
     const value = e.target.value;
@@ -93,7 +94,7 @@ const { challenge } = Astro.props;
     $results.innerHTML = filter
       .map((anime) => {
         return `<button class=" w-[300px] flex gap-2  items-center bg-[#ebd07f] rounded-sm p-2 hover:opacity-80 max-w-[300px]">
-          <img class="h-20 cover-contain" src="${anime.img}" alt="${anime.name}" class="w-full h-32 object-cover opacity-0" />
+          <img class="h-20 cover-contain " src="${anime.img}" alt="${anime.name}" class="w-full h-32 object-cover opacity-0" />
           <h2>${anime.name}</h2>
 
           </button>`;
@@ -103,36 +104,29 @@ const { challenge } = Astro.props;
     const $buttons = document.querySelectorAll("button");
     $buttons.forEach(($button) => {
       $button.addEventListener("click", () => {
+        if (!$button.querySelector("h2").textContent) return;
         const value = $button.querySelector("h2").textContent;
         $search.value = value;
         if (value.toLowerCase() === winner.toLowerCase()) {
           $winner.textContent = `Respuesta correcta. Ganaste!`;
           $nameWinner.textContent = `✅ ${winner}`;
           $images.forEach(($image) => {
+            if ($image.classList.contains("opacity-100")) return;
             $image.classList.toggle("opacity-0");
+            $image.classList.toggle("opacity-100");
           });
         } else {
           const $error = document.createElement("li");
           $error.textContent = `❌ ${value}`;
           document.querySelector("#list-of-errors").appendChild($error);
           $search.value = "";
+          if (currentImage === $images.length) return;
+          $images[currentImage].classList.toggle("opacity-0");
+          $images[currentImage].classList.toggle("opacity-100");
+          currentImage = currentImage + 1;
         }
         $results.innerHTML = "";
-        canShowNextImage = true;
       });
-    });
-  });
-
-  let currentImage = 0;
-
-  $images.forEach(($image, index) => {
-    $image.addEventListener("click", () => {
-      if (currentImage === index && canShowNextImage) {
-        $image.classList.toggle("opacity-100");
-        $image.classList.toggle("opacity-0");
-        currentImage++;
-        canShowNextImage = false;
-      }
     });
   });
 </script>
