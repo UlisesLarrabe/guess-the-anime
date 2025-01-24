@@ -8,5 +8,75 @@
       "/demon-slayer/01-3.webp",
       "/demon-slayer/01-4.webp"
     ]
+  },
+  {
+    "id": 2,
+    "winner": "Attack on Titan",
+    "images": [
+      "/attack-on-titan/01-1.webp",
+      "/attack-on-titan/01-2.webp",
+      "/attack-on-titan/01-3.webp",
+      "/attack-on-titan/01-4.webp"
+    ]
+  },
+  {
+    "id": 3,
+    "winner": "One Piece",
+    "images": [
+      "/one-piece/01-1.webp",
+      "/one-piece/01-2.webp",
+      "/one-piece/01-3.webp",
+      "/one-piece/01-4.webp"
+    ]
+  },
+  {
+    "id": 4,
+    "winner": "Naruto",
+    "images": [
+      "/naruto/01-1.webp",
+      "/naruto/01-2.webp",
+      "/naruto/01-3.webp",
+      "/naruto/01-4.webp"
+    ]
+  },
+  {
+    "id": 5,
+    "winner": "My Hero Academia",
+    "images": [
+      "/my-hero-academia/01-1.webp",
+      "/my-hero-academia/01-2.webp",
+      "/my-hero-academia/01-3.webp",
+      "/my-hero-academia/01-4.webp"
+    ]
+  },
+  {
+    "id": 6,
+    "winner": "Black Clover",
+    "images": [
+      "/black-clover/01-1.webp",
+      "/black-clover/01-2.webp",
+      "/black-clover/01-3.webp",
+      "/black-clover/01-4.webp"
+    ]
+  },
+  {
+    "id": 7,
+    "winner": "Jujutsu Kaisen",
+    "images": [
+      "/jujutsu-kaisen/01-1.webp",
+      "/jujutsu-kaisen/01-2.webp",
+      "/jujutsu-kaisen/01-3.webp",
+      "/jujutsu-kaisen/01-4.webp"
+    ]
+  },
+  {
+    "id": 8,
+    "winner": "Tokyo Revengers",
+    "images": [
+      "/tokyo-revengers/01-1.webp",
+      "/tokyo-revengers/01-2.webp",
+      "/tokyo-revengers/01-3.webp",
+      "/tokyo-revengers/01-4.webp"
+    ]
   }
 ]
