@@ -4,7 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import es from "src/i18n/es.json";
 
 export const getStaticPaths = async () => {
-  const paths = [{ params: { lang: "en" } }, { params: { lang: "es" } }];
+  const paths = [{ params: { lang: "es" } }];
   return paths;
 };
 
@@ -14,16 +14,14 @@ let langData = null;
 if (lang === "es") {
   langData = es;
 }
-
-console.log(langData);
 ---
 
 <Layout lang={lang}>
   <main
-    class="text-[#f7f7f7] flex flex-col justify-center items-center p-2 gap-10"
+    class="text-[#f7f7f7] flex flex-col justify-center items-center p-2 pt-10 gap-10"
   >
-    <h1 class="text-2xl font-bold">
-      <span class="text-[#f2cc67]">{langData?.greetings.yellow}</span>
+    <h1 class="text-5xl font-bold">
+      ¡<span class="text-[#f2cc67]">{langData?.greetings.yellow}</span>
       {langData?.greetings.white}
     </h1>
     <Challenges langData={langData} />

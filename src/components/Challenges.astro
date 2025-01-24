@@ -6,9 +6,11 @@ const { langData } = Astro.props;
 
 <section class="flex flex-col gap-10 justify-center items-center">
   <h2 class="underline">{langData.challenges.title}</h2>
-  {
-    challenges.map((challenge) => {
-      return <ChallengeCard challenge={challenge} />;
-    })
-  }
+  <div class="grid grid-cols-3 grid-rows-3 w-[1000px] gap-2">
+    {
+      challenges.map((challenge) => {
+        return <ChallengeCard challenge={challenge} />;
+      })
+    }
+  </div>
 </section>

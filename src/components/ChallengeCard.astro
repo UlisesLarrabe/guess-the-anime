@@ -1,10 +1,15 @@
 ---
 const { challenge } = Astro.props;
+
+const col =
+  challenge.id % 2 === 0
+    ? "row-span-3  md:col-span-1 md:row-span-3  rounded-md p-10"
+    : "row-span-2  md:col-span-1 md:row-span-2  rounded-md p-10";
 ---
 
 <a
   href={`es/challenges/${challenge.id}`}
-  class="text-[#f2cc67] bg-slate-800 p-4 flex justify-center items-center w-44 h-60 group hover:border-yellow-300 hover:border-2 rounded-sm"
+  class={`text-[#f2cc67] bg-slate-800 p-4 flex justify-center items-center  group hover:border-yellow-300 hover:border-2 rounded-sm ${col}`}
 >
   <span
     class="group-hover:scale-105 group-hover:font-bold transition-transform duration-100"
