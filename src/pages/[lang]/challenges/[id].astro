@@ -18,7 +18,10 @@ const { challenge } = Astro.props;
   >
     <div class="flex flex-col gap-2 items-center justify-center">
       <h1 class="text-3xl text-[#f7f7f7]">
-        Reto número <span class="text-[#f2cc67]">#{challenge.id}</span>
+        Reto número <span
+          transition:name={challenge.id.toString()}
+          class="text-[#f2cc67]">#{challenge.id}</span
+        >
       </h1>
       <div class="w-full items-center justify-center flex flex-col gap-4">
         <search class="w-[300px]">

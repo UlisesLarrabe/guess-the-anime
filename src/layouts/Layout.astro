@@ -1,6 +1,8 @@
 ---
 const { lang } = Astro.params;
+import { ClientRouter } from "astro:transitions";
 
+import Header from "@components/Header.astro";
 import "@fontsource-variable/onest";
 ---
 
@@ -12,8 +14,10 @@ import "@fontsource-variable/onest";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Adivina el anime!</title>
+    <ClientRouter />
   </head>
   <body>
+    <Header />
     <slot />
   </body>
 </html>

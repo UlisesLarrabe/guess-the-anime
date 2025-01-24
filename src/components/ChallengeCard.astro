@@ -8,6 +8,6 @@ const { challenge } = Astro.props;
 >
   <span
     class="group-hover:scale-105 group-hover:font-bold transition-transform duration-100"
-    >#{challenge.id}</span
+    transition:name={challenge.id.toString()}>#{challenge.id}</span
   >
 </a>
