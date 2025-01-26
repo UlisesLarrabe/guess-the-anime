@@ -1,0 +1,33 @@
+---
+const { challengeId, length } = Astro.props;
+---
+
+<div class="flex gap-4 justify-center items-center">
+  {
+    challengeId - 1 > 0 && (
+      <a
+        class="bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7]"
+        href={`/es/challenges/${challengeId - 1}`}
+      >
+        ⬅️ Reto anterior
+      </a>
+    )
+  }
+
+  <a
+    class="bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7]"
+    href="/es"
+    >...
+  </a>
+
+  {
+    challengeId + 1 < length + 1 && (
+      <a
+        class="bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7]"
+        href={`/es/challenges/${challengeId + 1}`}
+      >
+        Siguiente reto ➡️
+      </a>
+    )
+  }
+</div>

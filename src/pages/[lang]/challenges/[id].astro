@@ -1,4 +1,5 @@
 ---
+import Pagination from "@components/Pagination.astro";
 import Layout from "@layouts/Layout.astro";
 import challenges from "src/challenges/challenges.json";
 
@@ -77,35 +78,7 @@ const length = challenges.length;
         })
       }
     </div>
-    <div class="flex gap-4 justify-center items-center">
-      {
-        challenge.id - 1 > 0 && (
-          <a
-            class="bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7]"
-            href={`/es/challenges/${challenge.id - 1}`}
-          >
-            ⬅️ Reto anterior
-          </a>
-        )
-      }
-
-      <a
-        class="bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7]"
-        href="/es"
-        >...
-      </a>
-
-      {
-        challenge.id + 1 < length + 1 && (
-          <a
-            class="bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7]"
-            href={`/es/challenges/${challenge.id + 1}`}
-          >
-            Siguiente reto ➡️
-          </a>
-        )
-      }
-    </div>
+    <Pagination challengeId={challenge.id} length={length} />
   </section>
 </Layout>
 
