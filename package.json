@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.5",
+    "@astrojs/vercel": "^8.0.4",
     "@fontsource-variable/onest": "^5.1.1",
     "@midudev/tailwind-animations": "^0.1.0",
     "astro": "^5.1.9",
