@@ -33,21 +33,21 @@ const { challengeId, length } = Astro.props;
 </div>
 
 <script>
-  // const challengeId = parseInt(document.querySelector("[data-id]").dataset.id);
+  const challengeId = parseInt(document.querySelector("[data-id]").dataset.id);
 
-  // const redirect = (url: string) => {
-  //   return (window.location.href = url);
-  // };
+  const redirect = (url: string) => {
+    return (window.location.href = url);
+  };
 
-  // const $buttons = document.querySelectorAll("button");
-  // $buttons.forEach((button) => {
-  //   button.addEventListener("click", (e) => {
-  //     const { op } = e.target.dataset;
-  //     if (op === "prev") {
-  //       redirect(`/es/challenges/${challengeId - 1}`);
-  //     } else {
-  //       redirect(`/es/challenges/${challengeId + 1}`);
-  //     }
-  //   });
-  // });
+  const $buttons = document.querySelectorAll("button");
+  $buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const { op } = e.target.dataset;
+      if (op === "prev") {
+        redirect(`/es/challenges/${challengeId - 1}`);
+      } else {
+        redirect(`/es/challenges/${challengeId + 1}`);
+      }
+    });
+  });
 </script>
