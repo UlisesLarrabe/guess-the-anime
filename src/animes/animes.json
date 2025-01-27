@@ -98,55 +98,5 @@
     "id": 20,
     "name": "Noragami",
     "img": "/noragami/cover.webp"
-  },
-  {
-    "id": 21,
-    "name": "Haikyuu!!",
-    "img": "/haikyuu/cover.webp"
-  },
-  {
-    "id": 22,
-    "name": "Your Lie in April",
-    "img": "/your-lie-in-april/cover.webp"
-  },
-  {
-    "id": 23,
-    "name": "Clannad",
-    "img": "/clannad/cover.webp"
-  },
-  {
-    "id": 24,
-    "name": "Erased",
-    "img": "/erased/cover.webp"
-  },
-  {
-    "id": 25,
-    "name": "Mob Psycho 100",
-    "img": "/mob-psycho-100/cover.webp"
-  },
-  {
-    "id": 26,
-    "name": "The Seven Deadly Sins",
-    "img": "/the-seven-deadly-sins/cover.webp"
-  },
-  {
-    "id": 27,
-    "name": "Violet Evergarden",
-    "img": "/violet-evergarden/cover.webp"
-  },
-  {
-    "id": 28,
-    "name": "Parasyte",
-    "img": "/parasyte/cover.webp"
-  },
-  {
-    "id": 29,
-    "name": "Akame ga Kill!",
-    "img": "/akame-ga-kill/cover.webp"
-  },
-  {
-    "id": 30,
-    "name": "Toradora!",
-    "img": "/toradora/cover.webp"
   }
 ]
