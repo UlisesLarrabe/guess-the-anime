@@ -48,5 +48,105 @@
     "id": 10,
     "name": "Dragon Ball",
     "img": "/dragon-ball/cover.webp"
+  },
+  {
+    "id": 11,
+    "name": "Hunter x Hunter",
+    "img": "/hunter-x-hunter/cover.webp"
+  },
+  {
+    "id": 12,
+    "name": "Bleach",
+    "img": "/bleach/cover.webp"
+  },
+  {
+    "id": 13,
+    "name": "Fairy Tail",
+    "img": "/fairy-tail/cover.webp"
+  },
+  {
+    "id": 14,
+    "name": "Sword Art Online",
+    "img": "/sword-art-online/cover.webp"
+  },
+  {
+    "id": 15,
+    "name": "Fullmetal Alchemist: Brotherhood",
+    "img": "/fullmetal-alchemist-brotherhood/cover.webp"
+  },
+  {
+    "id": 16,
+    "name": "Code Geass",
+    "img": "/code-geass/cover.webp"
+  },
+  {
+    "id": 17,
+    "name": "Steins;Gate",
+    "img": "/steins-gate/cover.webp"
+  },
+  {
+    "id": 18,
+    "name": "Re:Zero - Starting Life in Another World",
+    "img": "/re-zero/cover.webp"
+  },
+  {
+    "id": 19,
+    "name": "One Punch Man",
+    "img": "/one-punch-man/cover.webp"
+  },
+  {
+    "id": 20,
+    "name": "Noragami",
+    "img": "/noragami/cover.webp"
+  },
+  {
+    "id": 21,
+    "name": "Haikyuu!!",
+    "img": "/haikyuu/cover.webp"
+  },
+  {
+    "id": 22,
+    "name": "Your Lie in April",
+    "img": "/your-lie-in-april/cover.webp"
+  },
+  {
+    "id": 23,
+    "name": "Clannad",
+    "img": "/clannad/cover.webp"
+  },
+  {
+    "id": 24,
+    "name": "Erased",
+    "img": "/erased/cover.webp"
+  },
+  {
+    "id": 25,
+    "name": "Mob Psycho 100",
+    "img": "/mob-psycho-100/cover.webp"
+  },
+  {
+    "id": 26,
+    "name": "The Seven Deadly Sins",
+    "img": "/the-seven-deadly-sins/cover.webp"
+  },
+  {
+    "id": 27,
+    "name": "Violet Evergarden",
+    "img": "/violet-evergarden/cover.webp"
+  },
+  {
+    "id": 28,
+    "name": "Parasyte",
+    "img": "/parasyte/cover.webp"
+  },
+  {
+    "id": 29,
+    "name": "Akame ga Kill!",
+    "img": "/akame-ga-kill/cover.webp"
+  },
+  {
+    "id": 30,
+    "name": "Toradora!",
+    "img": "/toradora/cover.webp"
   }
 ]
