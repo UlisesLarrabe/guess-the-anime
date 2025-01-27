@@ -2,7 +2,6 @@
 import Challenges from "@components/Challenges.astro";
 import Layout from "@layouts/Layout.astro";
 import es from "src/i18n/es.json";
-import challengesJson from "../challenges/challenges.json";
 import RandomChallengeCard from "@components/RandomChallengeCard.astro";
 
 export const getStaticPaths = async () => {
@@ -11,8 +10,8 @@ export const getStaticPaths = async () => {
 };
 
 const langData = es;
-const length = challengesJson.length;
-const randomChallenge = Math.floor(Math.random() * length) + 1;
+
+export const prerender = true;
 ---
 
 <Layout lang={"es"}>
@@ -23,7 +22,7 @@ const randomChallenge = Math.floor(Math.random() * length) + 1;
       ¡<span class="text-[#f2cc67]">{langData?.greetings.yellow}</span>
       {langData?.greetings.white}
     </h1>
-    <RandomChallengeCard randomChallenge={randomChallenge} />
+    <RandomChallengeCard server:defer />
     <Challenges langData={langData} />
   </main>
 </Layout>

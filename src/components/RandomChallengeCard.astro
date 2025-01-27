@@ -1,6 +1,9 @@
 ---
 import RandomIcon from "../icons/RandomIcon.astro";
-const { randomChallenge } = Astro.props;
+import challengesJson from "../challenges/challenges.json";
+
+const length = challengesJson.length;
+const randomChallenge = Math.floor(Math.random() * length) + 1;
 ---
 
 <article
