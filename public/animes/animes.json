@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "name": "Demon Slayer",
+    "img": "/demon-slayer/cover.webp"
+  },
+  {
+    "id": 2,
+    "name": "Attack on Titan",
+    "img": "/attack-on-titan/cover.webp"
+  },
+  {
+    "id": 3,
+    "name": "One Piece",
+    "img": "/one-piece/cover.webp"
+  },
+  {
+    "id": 4,
+    "name": "Naruto",
+    "img": "/naruto/cover.webp"
+  },
+  {
+    "id": 5,
+    "name": "My Hero Academia",
+    "img": "/my-hero-academia/cover.webp"
+  },
+  {
+    "id": 6,
+    "name": "Black Clover",
+    "img": "/black-clover/cover.webp"
+  },
+  {
+    "id": 7,
+    "name": "Jujutsu Kaisen",
+    "img": "/jujutsu-kaisen/cover.webp"
+  },
+  {
+    "id": 8,
+    "name": "Tokyo Revengers",
+    "img": "/tokyo-revengers/cover.webp"
+  },
+  {
+    "id": 9,
+    "name": "Death Note",
+    "img": "/death-note/cover.webp"
+  },
+  {
+    "id": 10,
+    "name": "Dragon Ball",
+    "img": "/dragon-ball/cover.webp"
+  },
+  {
+    "id": 11,
+    "name": "Hunter x Hunter",
+    "img": "/hunter-x-hunter/cover.webp"
+  },
+  {
+    "id": 12,
+    "name": "Bleach",
+    "img": "/bleach/cover.webp"
+  },
+  {
+    "id": 13,
+    "name": "Fairy Tail",
+    "img": "/fairy-tail/cover.webp"
+  },
+  {
+    "id": 14,
+    "name": "Sword Art Online",
+    "img": "/sword-art-online/cover.webp"
+  },
+  {
+    "id": 15,
+    "name": "Fullmetal Alchemist: Brotherhood",
+    "img": "/fullmetal-alchemist-brotherhood/cover.webp"
+  },
+  {
+    "id": 16,
+    "name": "Code Geass",
+    "img": "/code-geass/cover.webp"
+  },
+  {
+    "id": 17,
+    "name": "Steins;Gate",
+    "img": "/steins-gate/cover.webp"
+  },
+  {
+    "id": 18,
+    "name": "Re:Zero - Starting Life in Another World",
+    "img": "/re-zero/cover.webp"
+  },
+  {
+    "id": 19,
+    "name": "One Punch Man",
+    "img": "/one-punch-man/cover.webp"
+  },
+  {
+    "id": 20,
+    "name": "Noragami",
+    "img": "/noragami/cover.webp"
+  }
+]
