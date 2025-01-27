@@ -36,95 +36,95 @@ export const prerender = true;
       <Pagination challengeId={challenge.id} length={length} />
     </div>
   </section>
-
-  <script type="module">
-    const loadAnimes = async () => {
-      const response = await fetch("/animes/animes.json");
-      const animes = await response.json();
-      return animes;
-    };
-
-    const animes = await loadAnimes();
-
-    const $images = document.querySelectorAll("img");
-    const winner = document.querySelector("[data-winner]").dataset.winner;
-    const $search = document.querySelector("#searchValue");
-    const $results = document.querySelector("#search-results");
-    const $winner = document.querySelector("#winner");
-    const $nameWinner = document.querySelector("#name-winner");
-    let currentImage = 1;
-    let hasWon = false;
-
-    $search.value = "";
-    $results.innerHTML = "";
-
-    const handleInput = (e) => {
-      if (hasWon) {
-        return;
-      }
-
-      const value = e.target.value;
-      if (value === "") {
-        $results.innerHTML = "";
-        return;
-      }
-      $results.innerHTML = "";
-      const filter = animes.filter((anime) => {
-        return anime.name.toLowerCase().includes(value.toLowerCase());
-      });
-
-      $results.innerHTML = filter
-        .map((anime) => {
-          return `<button class="w-[300px] flex gap-2 items-center bg-[#ebd07f] rounded-sm p-2 hover:opacity-80 max-w-[300px]">
-            <img class="h-20 cover-contain" src="${anime.img}" alt="${anime.name}" />
-            <h2>${anime.name}</h2>
-          </button>`;
-        })
-        .join(" ");
-
-      const $buttons = document.querySelectorAll("button");
-      $buttons.forEach(($button) => {
-        $button.addEventListener("click", () => {
-          if (!$button.querySelector("h2").textContent) return;
-          const value = $button.querySelector("h2").textContent;
-          $search.value = value;
-          if (value.toLowerCase() === winner.toLowerCase()) {
-            $winner.textContent = `Respuesta correcta. Ganaste!`;
-            hasWon = true;
-            $nameWinner.textContent = `✅ ${winner}`;
-            $images.forEach(($image) => {
-              if ($image.classList.contains("opacity-100")) return;
-              $image.classList.toggle("opacity-0");
-              $image.classList.toggle("opacity-100");
-              $image.classList.toggle("animate-fade-in");
-            });
-            $images[currentImage - 1].classList.toggle("border-green-500");
-          } else {
-            const $error = document.createElement("li");
-            $error.textContent = `❌ ${value}`;
-            document.querySelector("#list-of-errors").prepend($error);
-            $search.value = "";
-            if (currentImage === $images.length) return;
-            $images[currentImage].classList.toggle("opacity-0");
-            $images[currentImage].classList.toggle("opacity-100");
-            $images[currentImage].classList.toggle("animate-fade-in");
-            $images[currentImage - 1].classList.toggle("border-red-500");
-            currentImage = currentImage + 1;
-          }
-          $results.innerHTML = "";
-        });
-      });
-    };
-
-    $search?.addEventListener("input", handleInput);
-  </script>
-
-  <style>
-    img {
-      transition: opacity 1s;
-
-      user-select: none;
-      pointer-events: none;
-    }
-  </style>
 </Layout>
+
+<script type="module">
+  const loadAnimes = async () => {
+    const response = await fetch("/animes/animes.json");
+    const animes = await response.json();
+    return animes;
+  };
+
+  const animes = await loadAnimes();
+
+  const $images = document.querySelectorAll("img");
+  const winner = document.querySelector("[data-winner]").dataset.winner;
+  const $search = document.querySelector("#searchValue");
+  const $results = document.querySelector("#search-results");
+  const $winner = document.querySelector("#winner");
+  const $nameWinner = document.querySelector("#name-winner");
+  let currentImage = 1;
+  let hasWon = false;
+
+  $search.value = "";
+  $results.innerHTML = "";
+
+  const handleInput = (e) => {
+    if (hasWon) {
+      return;
+    }
+
+    const value = e.target.value;
+    if (value === "") {
+      $results.innerHTML = "";
+      return;
+    }
+    $results.innerHTML = "";
+    const filter = animes.filter((anime) => {
+      return anime.name.toLowerCase().includes(value.toLowerCase());
+    });
+
+    $results.innerHTML = filter
+      .map((anime) => {
+        return `<button class="w-[300px] flex gap-2 items-center bg-[#ebd07f] rounded-sm p-2 hover:opacity-80 max-w-[300px]">
+          <img class="h-20 cover-contain" src="${anime.img}" alt="${anime.name}" />
+          <h2>${anime.name}</h2>
+        </button>`;
+      })
+      .join(" ");
+
+    const $buttons = document.querySelectorAll("button");
+    $buttons.forEach(($button) => {
+      $button.addEventListener("click", () => {
+        if (!$button.querySelector("h2").textContent) return;
+        const value = $button.querySelector("h2").textContent;
+        $search.value = value;
+        if (value.toLowerCase() === winner.toLowerCase()) {
+          $winner.textContent = `Respuesta correcta. Ganaste!`;
+          hasWon = true;
+          $nameWinner.textContent = `✅ ${winner}`;
+          $images.forEach(($image) => {
+            if ($image.classList.contains("opacity-100")) return;
+            $image.classList.toggle("opacity-0");
+            $image.classList.toggle("opacity-100");
+            $image.classList.toggle("animate-fade-in");
+          });
+          $images[currentImage - 1].classList.toggle("border-green-500");
+        } else {
+          const $error = document.createElement("li");
+          $error.textContent = `❌ ${value}`;
+          document.querySelector("#list-of-errors").prepend($error);
+          $search.value = "";
+          if (currentImage === $images.length) return;
+          $images[currentImage].classList.toggle("opacity-0");
+          $images[currentImage].classList.toggle("opacity-100");
+          $images[currentImage].classList.toggle("animate-fade-in");
+          $images[currentImage - 1].classList.toggle("border-red-500");
+          currentImage = currentImage + 1;
+        }
+        $results.innerHTML = "";
+      });
+    });
+  };
+
+  $search?.addEventListener("input", handleInput);
+</script>
+
+<style>
+  img {
+    transition: opacity 1s;
+
+    user-select: none;
+    pointer-events: none;
+  }
+</style>
