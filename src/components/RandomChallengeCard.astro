@@ -1,0 +1,20 @@
+---
+import RandomIcon from "../icons/RandomIcon.astro";
+const { randomChallenge } = Astro.props;
+---
+
+<article
+  class="flex justify-center flex-col p-4 border-2 border-[#4883fe] rounded-lg gap-4"
+>
+  <h2 class="text-[#4883fe] font-semibold text-2xl">
+    ¿No sabes con cual empezar?
+  </h2>
+  <p class="text-[#6a9afe]">Entonces comienza con un reto al azar!</p>
+  <a
+    href={`es/challenges/${randomChallenge}`}
+    class="flex gap-2 justify-center items-center p-2 bg-[#4883fe] text-white rounded-md hover:opacity-80"
+  >
+    <RandomIcon />
+    Empezar
+  </a>
+</article>
