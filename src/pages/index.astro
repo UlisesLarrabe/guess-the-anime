@@ -1,3 +1,24 @@
 ---
-return Astro.redirect("es/");
+import Challenges from "@components/Challenges.astro";
+import Layout from "@layouts/Layout.astro";
+import es from "src/i18n/es.json";
+
+export const getStaticPaths = async () => {
+  const paths = [{ params: { lang: "es" } }];
+  return paths;
+};
+
+const langData = es;
 ---
+
+<Layout lang={"es"}>
+  <main
+    class="text-[#f7f7f7] flex flex-col justify-center items-center p-2 pt-10 gap-10"
+  >
+    <h1 class="text-5xl font-bold">
+      ¡<span class="text-[#f2cc67]">{langData?.greetings.yellow}</span>
+      {langData?.greetings.white}
+    </h1>
+    <Challenges langData={langData} />
+  </main>
+</Layout>
