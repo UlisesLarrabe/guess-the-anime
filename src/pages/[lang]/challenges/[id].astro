@@ -36,7 +36,13 @@ const length = challenges.length;
   </section>
 
   <script type="module">
-    import animes from "../../../animes/animes.json";
+    const loadAnimes = async () => {
+      const response = await fetch("/animes/animes.json");
+      const animes = await response.json();
+      return animes;
+    };
+
+    const animes = await loadAnimes();
 
     const $images = document.querySelectorAll("img");
     const winner = document.querySelector("[data-winner]").dataset.winner;
