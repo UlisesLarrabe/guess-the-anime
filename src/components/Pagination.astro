@@ -1,18 +1,20 @@
 ---
 const { challengeId, length } = Astro.props;
+const hasPrev = challengeId - 1 > 0;
+const opacityPrev = hasPrev ? "opacity-100" : "opacity-50";
+
+const hasNext = challengeId + 1 < length + 1;
+const opacityNext = hasNext ? "opacity-100" : "opacity-50";
 ---
 
 <div class="flex gap-4 justify-center items-center mt-10" data-id={challengeId}>
-  {
-    challengeId - 1 > 0 && (
-      <button
-        class="bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7]"
-        data-op="prev"
-      >
-        ⬅️ Reto anterior
-      </button>
-    )
-  }
+  <button
+    class={`bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7] ${opacityPrev}`}
+    data-op="prev"
+    disabled={!hasPrev}
+  >
+    ⬅️ Reto anterior
+  </button>
 
   <a
     class="bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7]"
@@ -20,16 +22,13 @@ const { challengeId, length } = Astro.props;
     >...
   </a>
 
-  {
-    challengeId + 1 < length + 1 && (
-      <button
-        class="bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7]"
-        data-op="next"
-      >
-        Siguiente reto ➡️
-      </button>
-    )
-  }
+  <button
+    class={`bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7] ${opacityNext}`}
+    data-op="next"
+    disabled={!hasNext}
+  >
+    Siguiente reto ➡️
+  </button>
 </div>
 
 <script>
