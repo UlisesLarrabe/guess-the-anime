@@ -2,17 +2,17 @@
 const { challengeId, length } = Astro.props;
 ---
 
-<div class="flex gap-4 justify-center items-center mt-10">
-  <!-- {
+<div class="flex gap-4 justify-center items-center mt-10" data-id={challengeId}>
+  {
     challengeId - 1 > 0 && (
-      <a
+      <button
         class="bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7]"
-        href={`/es/challenges/${challengeId - 1}`}
+        data-op="prev"
       >
         ⬅️ Reto anterior
-      </a>
+      </button>
     )
-  } -->
+  }
 
   <a
     class="bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7]"
@@ -20,14 +20,34 @@ const { challengeId, length } = Astro.props;
     >...
   </a>
 
-  <!-- {
+  {
     challengeId + 1 < length + 1 && (
-      <a
+      <button
         class="bg-[#d46419] p-4 rounded-sm hover:scale-105 transition-transform font-semibold text-[#f7f7f7]"
-        href={`/es/challenges/${challengeId + 1}`}
+        data-op="next"
       >
         Siguiente reto ➡️
-      </a>
+      </button>
     )
-  } -->
+  }
 </div>
+
+<script>
+  const challengeId = parseInt(document.querySelector("[data-id]").dataset.id);
+
+  const redirect = (url: string) => {
+    return (window.location.href = url);
+  };
+
+  const $buttons = document.querySelectorAll("button");
+  $buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const { op } = e.target.dataset;
+      if (op === "prev") {
+        redirect(`/es/challenges/${challengeId - 1}`);
+      } else {
+        redirect(`/es/challenges/${challengeId + 1}`);
+      }
+    });
+  });
+</script>

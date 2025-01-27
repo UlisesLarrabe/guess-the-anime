@@ -15,8 +15,6 @@ export async function getStaticPaths() {
 
 const { challenge } = Astro.props;
 const length = challenges.length;
-
-export const prerender = true;
 ---
 
 <Layout>
@@ -30,7 +28,7 @@ export const prerender = true;
           class="text-[#f2cc67]">#{challenge.id}</span
         >
       </h1>
-      <Search />
+      <Search key={challenge.id} />
       <ChallengeAttempts />
       <ImagesChallenge challenge={challenge} />
       <Pagination challengeId={challenge.id} length={length} />
@@ -55,7 +53,10 @@ export const prerender = true;
     let currentImage = 1;
     let hasWon = false;
 
-    $search?.addEventListener("input", (e) => {
+    $search.value = "";
+    $results.innerHTML = "";
+
+    const handleInput = (e) => {
       if (hasWon) {
         return;
       }
@@ -72,10 +73,9 @@ export const prerender = true;
 
       $results.innerHTML = filter
         .map((anime) => {
-          return `<button class=" w-[300px] flex gap-2  items-center bg-[#ebd07f] rounded-sm p-2 hover:opacity-80 max-w-[300px]">
-          <img class="h-20 cover-contain " src="${anime.img}" alt="${anime.name}" class="w-full h-32 object-cover opacity-0" />
-          <h2>${anime.name}</h2>
-
+          return `<button class="w-[300px] flex gap-2 items-center bg-[#ebd07f] rounded-sm p-2 hover:opacity-80 max-w-[300px]">
+            <img class="h-20 cover-contain" src="${anime.img}" alt="${anime.name}" />
+            <h2>${anime.name}</h2>
           </button>`;
         })
         .join(" ");
@@ -112,7 +112,9 @@ export const prerender = true;
           $results.innerHTML = "";
         });
       });
-    });
+    };
+
+    $search?.addEventListener("input", handleInput);
   </script>
 
   <style>
