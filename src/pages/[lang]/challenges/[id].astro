@@ -1,6 +1,9 @@
 ---
+import ImagesChallenge from "@components/ImagesChallenge.astro";
 import Pagination from "@components/Pagination.astro";
 import Layout from "@layouts/Layout.astro";
+import Search from "@components/Search.astro";
+import ChallengeAttempts from "@components/ChallengeAttempts.astro";
 import challenges from "src/challenges/challenges.json";
 
 export async function getStaticPaths() {
@@ -25,151 +28,91 @@ const length = challenges.length;
           class="text-[#f2cc67]">#{challenge.id}</span
         >
       </h1>
-      <div class="w-full items-center justify-center flex flex-col gap-4">
-        <search class="w-[300px]">
-          <label>
-            <input
-              type="text"
-              id="searchValue"
-              placeholder="Demon Slayer"
-              class="p-2 w-full rounded-sm h-12"
-            />
-          </label>
-        </search>
-        <div class="relative w-[300px] h-4">
-          <div
-            id="search-results"
-            class="z-40 absolute top-0 left-0 right-0 overflow-scroll scrollbar-none bg-[#ebd07f] rounded-sm max-h-40"
-          >
-          </div>
-        </div>
-      </div>
-
-      <div class="flex flex-col justify-center items-center h-[50px]">
-        <h3 class="text-2xl font-semibold text-[#9edf8f]" id="winner"></h3>
-        <p class="text-green-500 text-xl" id="name-winner"></p>
-      </div>
-
-      <ul
-        id="list-of-errors"
-        class="max-h-[70px] text-red-500 h-[70px] overflow-scroll scrollbar-none"
-      >
-      </ul>
+      <Search />
+      <ChallengeAttempts />
+      <ImagesChallenge challenge={challenge} />
+      <Pagination challengeId={challenge.id} length={length} />
     </div>
-
-    <div class="grid grid-cols-2 gap-2 w-full h-[600px]">
-      {
-        challenge.images.map((image, index) => {
-          const isFirst = index !== 0;
-          const visible = isFirst ? "opacity-0 " : "opacity-100";
-          return (
-            <div
-              class="bg-[#523d2f] rounded-sm "
-              data-winner={challenge.winner}
-            >
-              <img
-                src={image}
-                alt={image}
-                class={`${visible} w-full h-[300px] object-cover  select-none border-2 border-[#d46419] rounded-sm`}
-                draggable="false"
-              />
-            </div>
-          );
-        })
-      }
-    </div>
-    <Pagination challengeId={challenge.id} length={length} />
   </section>
-</Layout>
 
-<script type="module">
-  import animes from "/src/animes/animes.json";
+  <script type="module">
+    import animes from "/src/animes/animes.json";
 
-  const $images = document.querySelectorAll("img");
-  const winner = document.querySelector("[data-winner]").dataset.winner;
-  const $search = document.querySelector("#searchValue");
-  const $results = document.querySelector("#search-results");
-  const $winner = document.querySelector("#winner");
-  const $nameWinner = document.querySelector("#name-winner");
-  let currentImage = 1;
-  let hasWon = false;
+    const $images = document.querySelectorAll("img");
+    const winner = document.querySelector("[data-winner]").dataset.winner;
+    const $search = document.querySelector("#searchValue");
+    const $results = document.querySelector("#search-results");
+    const $winner = document.querySelector("#winner");
+    const $nameWinner = document.querySelector("#name-winner");
+    let currentImage = 1;
+    let hasWon = false;
 
-  // $images[0].classList.toggle("opacity-0");
-  // $images[0].classList.toggle("animate-fade-in");
+    $search?.addEventListener("input", (e) => {
+      if (hasWon) {
+        return;
+      }
 
-  $search?.addEventListener("input", (e) => {
-    if (hasWon) {
-      return;
-    }
-
-    const value = e.target.value;
-    if (value === "") {
+      const value = e.target.value;
+      if (value === "") {
+        $results.innerHTML = "";
+        return;
+      }
       $results.innerHTML = "";
-      return;
-    }
-    $results.innerHTML = "";
-    const filter = animes.filter((anime) => {
-      return anime.name.toLowerCase().includes(value.toLowerCase());
-    });
+      const filter = animes.filter((anime) => {
+        return anime.name.toLowerCase().includes(value.toLowerCase());
+      });
 
-    $results.innerHTML = filter
-      .map((anime) => {
-        return `<button class=" w-[300px] flex gap-2  items-center bg-[#ebd07f] rounded-sm p-2 hover:opacity-80 max-w-[300px]">
+      $results.innerHTML = filter
+        .map((anime) => {
+          return `<button class=" w-[300px] flex gap-2  items-center bg-[#ebd07f] rounded-sm p-2 hover:opacity-80 max-w-[300px]">
           <img class="h-20 cover-contain " src="${anime.img}" alt="${anime.name}" class="w-full h-32 object-cover opacity-0" />
           <h2>${anime.name}</h2>
 
           </button>`;
-      })
-      .join(" ");
+        })
+        .join(" ");
 
-    const $buttons = document.querySelectorAll("button");
-    $buttons.forEach(($button) => {
-      $button.addEventListener("click", () => {
-        if (!$button.querySelector("h2").textContent) return;
-        const value = $button.querySelector("h2").textContent;
-        $search.value = value;
-        if (value.toLowerCase() === winner.toLowerCase()) {
-          $winner.textContent = `Respuesta correcta. Ganaste!`;
-          hasWon = true;
-          $nameWinner.textContent = `✅ ${winner}`;
-          $images.forEach(($image) => {
-            if ($image.classList.contains("opacity-100")) return;
-            $image.classList.toggle("opacity-0");
-            $image.classList.toggle("opacity-100");
-            $image.classList.toggle("animate-fade-in");
-          });
-          $images[currentImage - 1].classList.toggle("border-green-500");
-        } else {
-          const $error = document.createElement("li");
-          $error.textContent = `❌ ${value}`;
-          document.querySelector("#list-of-errors").prepend($error);
-          $search.value = "";
-          if (currentImage === $images.length) return;
-          $images[currentImage].classList.toggle("opacity-0");
-          $images[currentImage].classList.toggle("opacity-100");
-          $images[currentImage].classList.toggle("animate-fade-in");
-          $images[currentImage - 1].classList.toggle("border-red-500");
-          currentImage = currentImage + 1;
-        }
-        $results.innerHTML = "";
+      const $buttons = document.querySelectorAll("button");
+      $buttons.forEach(($button) => {
+        $button.addEventListener("click", () => {
+          if (!$button.querySelector("h2").textContent) return;
+          const value = $button.querySelector("h2").textContent;
+          $search.value = value;
+          if (value.toLowerCase() === winner.toLowerCase()) {
+            $winner.textContent = `Respuesta correcta. Ganaste!`;
+            hasWon = true;
+            $nameWinner.textContent = `✅ ${winner}`;
+            $images.forEach(($image) => {
+              if ($image.classList.contains("opacity-100")) return;
+              $image.classList.toggle("opacity-0");
+              $image.classList.toggle("opacity-100");
+              $image.classList.toggle("animate-fade-in");
+            });
+            $images[currentImage - 1].classList.toggle("border-green-500");
+          } else {
+            const $error = document.createElement("li");
+            $error.textContent = `❌ ${value}`;
+            document.querySelector("#list-of-errors").prepend($error);
+            $search.value = "";
+            if (currentImage === $images.length) return;
+            $images[currentImage].classList.toggle("opacity-0");
+            $images[currentImage].classList.toggle("opacity-100");
+            $images[currentImage].classList.toggle("animate-fade-in");
+            $images[currentImage - 1].classList.toggle("border-red-500");
+            currentImage = currentImage + 1;
+          }
+          $results.innerHTML = "";
+        });
       });
     });
-  });
-</script>
+  </script>
 
-<style>
-  .scrollbar-none {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scrollbar-none::-webkit-scrollbar {
-    display: none;
-  }
-  ,
-  img {
-    transition: opacity 1s;
+  <style>
+    img {
+      transition: opacity 1s;
 
-    user-select: none;
-    pointer-events: none;
-  }
-</style>
+      user-select: none;
+      pointer-events: none;
+    }
+  </style>
+</Layout>

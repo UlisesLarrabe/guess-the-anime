@@ -1,0 +1,22 @@
+---
+const { challenge } = Astro.props;
+---
+
+<div class="grid grid-cols-2 gap-2 w-full h-[600px]">
+  {
+    challenge.images.map((image: string, index: number) => {
+      const isFirst = index !== 0;
+      const visible = isFirst ? "opacity-0 " : "opacity-100";
+      return (
+        <div class="bg-[#523d2f] rounded-sm " data-winner={challenge.winner}>
+          <img
+            src={image}
+            alt={image}
+            class={`${visible} w-full h-[300px] object-cover  select-none border-2 border-[#d46419] rounded-sm`}
+            draggable="false"
+          />
+        </div>
+      );
+    })
+  }
+</div>

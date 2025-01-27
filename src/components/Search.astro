@@ -1,0 +1,29 @@
+<div class="w-full items-center justify-center flex flex-col gap-4">
+  <search class="w-[300px]">
+    <label>
+      <input
+        type="text"
+        id="searchValue"
+        placeholder="Demon Slayer"
+        class="p-2 w-full rounded-sm h-12"
+      />
+    </label>
+  </search>
+  <div class="relative w-[300px] h-4">
+    <div
+      id="search-results"
+      class="z-40 absolute top-0 left-0 right-0 overflow-scroll scrollbar-none bg-[#ebd07f] rounded-sm max-h-40"
+    >
+    </div>
+  </div>
+</div>
+
+<style>
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+</style>
